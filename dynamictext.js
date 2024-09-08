@@ -1,58 +1,49 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     const text = "Quiz Leap Books";
+    const typingEffect = document.querySelector(".typing-effect");
     let index = 0;
-    const element = document.getElementById('dynamic-text');
 
-    function type() {
+    function typeText() {
         if (index < text.length) {
-            element.innerHTML += text.charAt(index);
+            typingEffect.textContent += text.charAt(index);
             index++;
-            setTimeout(type, 150);
+            setTimeout(typeText, 150);
         }
     }
 
-    type();
+    typeText();
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const menuIcon = document.querySelector(".menu-icon");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuBtn.addEventListener("click", function() {
+        navLinks.classList.toggle("nav-active");
+        menuIcon.classList.toggle("open");
+    });
 });
-document.getElementById('share-button').onclick = function() {
-    var socialButtons = document.getElementById('social-buttons');
-    if (socialButtons.classList.contains('hidden')) {
-        socialButtons.classList.remove('hidden');
-        socialButtons.classList.add('visible');
-    } else {
-        socialButtons.classList.remove('visible');
-        socialButtons.classList.add('hidden');
-    }
-};
 
-document.getElementById('facebook-share').onclick = function() {
-    window.open(
-        'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://quizleapsbooks.github.io/Welcome_Quiz_Leap_Books/'), 
-        'facebook-share-dialog', 
-        'width=800,height=600'
-    ); 
-    return false;
-};
+document.addEventListener('DOMContentLoaded', function () {
+    const mainShareButton = document.getElementById('mainShareButton');
+    const socialIcons = document.getElementById('socialIcons');
 
-document.getElementById('twitter-share').onclick = function() {
-    window.open(
-        'https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + 
-        '&url=' + encodeURIComponent('https://quizleapsbooks.github.io/Welcome_Quiz_Leap_Books/'), 
-        'twitter-share-dialog', 
-        'width=800,height=600'
-    ); 
-    return false;
-};
+    mainShareButton.addEventListener('click', function () {
+        socialIcons.style.display = socialIcons.style.display === 'block' ? 'none' : 'block';
+    });
 
-document.getElementById('linkedin-share').onclick = function() {
-    window.open(
-        'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://quizleapsbooks.github.io/Welcome_Quiz_Leap_Books/'), 
-        'linkedin-share-dialog', 
-        'width=800,height=600'
-    ); 
-    return false;
-};
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    document.getElementById('facebook').addEventListener('click', function () {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), 'facebook-share-dialog', 'width=800,height=600');
+    });
 
-  gtag('config', 'G-0F3VWXV87L');
+    document.getElementById('twitter').addEventListener('click', function () {
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href), 'twitter-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('linkedin').addEventListener('click', function () {
+        window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(window.location.href), 'linkedin-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('whatsapp').addEventListener('click', function () {
+        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href), 'whatsapp-share-dialog', 'width=800,height=600');
+    });
+});
